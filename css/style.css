@@ -1,0 +1,46 @@
+/********** GENERAL  *************/
+
+* {
+    font-family: 'Oxygen Mono', monospace;
+}
+
+h1 {
+    margin: 0;
+    padding: 20px;
+    font-size: 1.25rem;
+}
+
+/********** HEADER *************/
+
+header {
+    background-color: #000;
+    color: #fff;
+}
+
+/********** SEARCH INPUT *************/
+
+#search {
+    margin: 20px;
+    text-align: center;
+    border-bottom: 2px solid #000;
+}
+
+#search_employee {
+    margin: 15px 0;
+    height: 35px;
+    width: 40%;
+}
+
+label {
+    display: block;
+}
+
+#search_employee::placeholder {
+    padding-left: 10px;
+}
+
+/********** DIRECTORY *************/
+
+#directory {
+    background-image: url(../img/agsquare.png);
+}
