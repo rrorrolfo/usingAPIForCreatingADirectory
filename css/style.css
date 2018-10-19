@@ -42,5 +42,35 @@ label {
 /********** DIRECTORY *************/
 
 #directory {
+    padding: 20px;
     background-image: url(../img/agsquare.png);
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(auto-fit, 1fr);
+}
+
+.card {
+    margin: 20px 0;
+    display: flex;
+    background-color: #fff;
+    margin-left: 10%;
+    margin-right: 10%
+}
+
+.card img {
+    width: 100px;
+    height: 100px;
+    margin: 25px 25px;
+    border-radius: 50%;
+}
+
+.card h3 {
+    margin-top: 35px;
+    margin-bottom: 15px;
+}
+
+.card p {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    color: rgb(131, 125, 125);
 }
