@@ -74,3 +74,22 @@ label {
     margin-bottom: 5px;
     color: rgb(131, 125, 125);
 }
+
+@media (min-width: 760px) {
+    
+    #directory {
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 50px;
+    }
+
+    .card {
+        margin: 0;
+    }
+}
+
+@media (min-width: 1275px) {
+    #directory {
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 30px;
+    }
+}
