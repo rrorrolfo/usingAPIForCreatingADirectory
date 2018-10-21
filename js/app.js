@@ -1,29 +1,58 @@
-const directory = document.querySelector("#directory");
 
+// FETCH REQUEST TO RANDOM USER API
+
+const directory = document.querySelector("#directory");
 
 fetch("https://randomuser.me/api/?results=12&inc=name,email,location,dob,cell,picture&nat=us,dk,fr,gb,fi")
     
     .then(response => response.json())
-    .then(response => create_user_card(response.results))
-    .then(capitalize_letter);
-    
+    .then(response => create_employee_object(response.results))
+    .then(data => create_user_card(data));
 
-    function create_user_card (array) {
-        const employees = array.map(employee =>
-           `
-           <div class="card">
-            <img src="${employee.picture.large}">
-            <div class="info_wrapper">
-              <h3><span class="first_name">${employee.name.first}</span> ${employee.name.last}</h3>
-              <p>${employee.email}</p>
-              <p>${employee.location.state}</p>
-            </div>
-          </div>
-          `
-           ).join("");
- 
-           directory.innerHTML = employees;
+      // Class for creating employee_details object
+    class employee_details {
+      constructor (first_name, second_name, email, city, address, birthday, foto) {
+        this.firstName = first_name;
+        this.secondName = second_name;
+        this.email = email;
+        this.city = city;
+        this.address = address;
+        this.birthday = birthday;
+        this.foto = foto; 
+      }
     }
+
+    // Creating the array of objects with the employee details
+    function create_employee_object (array) {
+
+      const employees_list = [];
+
+      for (let i = 0; i < array.length; i += 1 ) {
+
+        const a = array[i];
+         
+        employees_list.push(new employee_details(a.name.first, a.name.last, a.email, a.location.state, a.location.street, a.dob.date, a.picture.large));
+      }
+      return employees_list
+    }
+
+    // Creating the employee cards to display
+    function create_user_card (array) {
+      const employees = array.map(employee =>
+        `
+        <div class="card">
+         <img src="${employee.foto}">
+         <div class="info_wrapper">
+           <h3><span class="first_name">${employee.firstName}</span> ${employee.secondName}</h3>
+           <p>${employee.email}</p>
+           <p>${employee.city}</p>
+         </div>
+       </div>
+       `
+        ).join("");
+
+        directory.innerHTML = employees;
+ }
 
 
 // SEARCH FUNCTIONALITY
