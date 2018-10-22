@@ -34,7 +34,7 @@ fetch("https://randomuser.me/api/?results=12&inc=name,email,location,dob,cell,pi
 
         const a = array[i];
          
-        employees_list.push(new employee_details(a.name.first.charAt(0).toUpperCase() + a.name.first.slice(1), a.name.last.charAt(0).toUpperCase() + a.name.last.slice(1), a.email, a.location.state.charAt(0).toUpperCase() + a.location.state.slice(1), a.location.street, a.dob.date.slice(-10), a.picture.large, a.cell));
+        employees_list.push(new employee_details(a.name.first.charAt(0).toUpperCase() + a.name.first.slice(1), a.name.last.charAt(0).toUpperCase() + a.name.last.slice(1), a.email, a.location.state.charAt(0).toUpperCase() + a.location.state.slice(1), a.location.street, a.dob.date.slice(-21, -10), a.picture.large, a.cell));
       }
       employeesList = employees_list;
       return employees_list
@@ -85,6 +85,8 @@ function search_employee() {
   }
 }
 
+// CREATE MODAL CARD FUNCTIONALITY
+
 directory.addEventListener("click", (event) => {
   const e = event.target;
   const cards = document.querySelectorAll(".card");
@@ -99,8 +101,6 @@ directory.addEventListener("click", (event) => {
     }
   }
 
-
-
   if (e.className == "card_overlay") {
     
     card_index(cards);
@@ -108,20 +108,7 @@ directory.addEventListener("click", (event) => {
   }
 });
 
-const modal_section = document.querySelector("#modal_section");
-
-
-modal_section.addEventListener("click", (event) => {
-  const modal = document.querySelector(".modal");
-  const modal_card = document.querySelector(".modal_card");
-
-  if (event.target.className === "modal") {
-    modal.style.display = "none";
-    modal_card.style.display = "none";
-  }
-  
-})
-
+  // FUNCTION FOR CREATING THE MODEL CARD
 
 function create_modal_card (number) {
 
@@ -129,6 +116,8 @@ function create_modal_card (number) {
   `
   <div class="modal_card">
     <p class="close_modal">X</p>
+    <p class="left_arrow"><</p>
+    <p class="right_arrow">></p>
     <div>
       <img src="${employeesList[number].foto}">
       <h3>${employeesList[number].firstName} ${employeesList[number].secondName}</h3>
@@ -145,8 +134,61 @@ function create_modal_card (number) {
   <div class="modal">
   </div>
   `;
-modal_section.innerHTML = c;
-  
+
+  modal_section.innerHTML = c;
 }
+
+// CLOSE MODAL FUNCTIONALITY
+
+const modal_section = document.querySelector("#modal_section");
+
+modal_section.addEventListener("click", (event) => {
+
+  const modal = document.querySelector(".modal");
+  const modal_card = document.querySelector(".modal_card");
+  const e = event.target;
+  const cards = document.querySelectorAll(".card h3");
+  const name_in_modalCard = document.querySelector(".modal_card h3"); 
+  let number;
+
+    function card_index (array) {
+      for(let i = 0; i < array.length; i += 1){
+          
+        if (array[i].textContent == name_in_modalCard.textContent) {
+          number = i;
+        }
+  
+      }
+    }
+
+  if (e.className === "modal" || e.className === "close_modal") {
+
+    modal.style.display = "none";
+    modal_card.style.display = "none";
+    
+  } else if (e.className === "right_arrow") {
+
+    card_index(cards);
+
+    if (number === 11) {
+      number = -1;
+      create_modal_card(number + 1);
+    } else {
+    create_modal_card(number + 1);
+    }
+
+  } else if (e.className === "left_arrow") {
+    
+    card_index(cards);
+
+    if (number === 0) {
+      number = 12;
+      create_modal_card(number - 1);
+    } else {
+    create_modal_card(number - 1);
+    }
+  }
+  
+});
 
 

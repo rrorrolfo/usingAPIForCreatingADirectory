@@ -109,8 +109,11 @@ label {
 .modal_card {
     position: absolute;
     top: 0;
-    left: 10%;
+    left: 0;
+    right: 0;
+    bottom: 0;
     width: 325px;
+    height: 420px;
     margin: 15% auto;
     background-color: #fff;
     z-index: 3;
@@ -118,12 +121,45 @@ label {
     padding: 15px 25px;
 }
 
+.left_arrow,
+.right_arrow,
 .close_modal {
     position: absolute;
+}
+
+.modal_card .left_arrow,
+.modal_card .right_arrow {
+    font-size: 3rem;
+    padding: 10px;
+    top: 40%;
+    color:rgb(250, 245, 245);
+    border-radius: 5px;
+}
+
+.left_arrow:hover,
+.right_arrow:hover {
+    background-color: rgba(248, 248, 248, .35);
+}
+
+.left_arrow {
+    left: -60px;
+}
+
+.right_arrow {
+    right: -60px;
+}
+
+.close_modal {
     top: 0;
     right: 30px;
     font-weight: 600;
     font-size: 1.5rem;
+}
+
+.close_modal:hover,
+.left_arrow:hover,
+.right_arrow:hover {
+    cursor: pointer;
 }
 
 .modal_card div:first-child {
@@ -143,6 +179,8 @@ label {
 }
 
 
+
+
 /********** MOBILE RESPONSIVENESS *************/
 
 @media (min-width: 760px) {
@@ -155,6 +193,10 @@ label {
     .card {
         margin: 0;
     }
+
+    .modal_card {
+        margin-top: 10%;
+    }
 }
 
 /********** DESKTOP RESPONSIVENESS *************/
@@ -165,7 +207,5 @@ label {
         grid-gap: 30px;
     }
 
-    .modal_card {
-        margin-top: 10%;
-    }
+    
 }
