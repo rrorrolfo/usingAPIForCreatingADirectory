@@ -2,7 +2,8 @@
 // FETCH REQUEST TO RANDOM USER API
 
 const directory = document.querySelector("#directory");
-let employeesList = " "
+let employeesList = " ";
+let number;
 
 fetch("https://randomuser.me/api/?results=12&inc=name,email,location,dob,cell,picture&nat=us,dk,fr,gb,fi")
     
@@ -26,6 +27,7 @@ fetch("https://randomuser.me/api/?results=12&inc=name,email,location,dob,cell,pi
     }
 
     // Creating the array of objects with the employee details
+
     function create_employee_object (array) {
 
       const employees_list = [];
@@ -41,6 +43,7 @@ fetch("https://randomuser.me/api/?results=12&inc=name,email,location,dob,cell,pi
     }
 
     // Creating the employee cards to display
+
     function create_user_card (array) {
       const employees = array.map(employee =>
         `
@@ -85,25 +88,25 @@ function search_employee() {
   }
 }
 
+//// FUNCTION FOR OBTAINING INDEX OF CARD TO DISPLAY IN MODAL CARD
+
+function card_index (array, to_compare) {
+  for(let i = 0; i < array.length; i += 1){
+      
+    if (array[i].textContent === to_compare.textContent) {
+      number = i;
+    }
+  }
+}
+
 // CREATE MODAL CARD FUNCTIONALITY
 
 directory.addEventListener("click", (event) => {
   const e = event.target;
   const cards = document.querySelectorAll(".card");
-  let number;
-
-  function card_index (array) {
-    for(let i = 0; i < array.length; i += 1){
-        
-      if (array[i].textContent === e.parentNode.textContent) {
-        number = i;
-      }
-    }
-  }
 
   if (e.className == "card_overlay") {
-    
-    card_index(cards);
+    card_index(cards, e.parentNode);
     create_modal_card(number);
   }
 });
@@ -138,7 +141,7 @@ function create_modal_card (number) {
   modal_section.innerHTML = c;
 }
 
-// CLOSE MODAL FUNCTIONALITY
+// FUNCTIONALITY FOR DISPLAYING MODAL CARD CONTENT AND TO CLOSE MODAL
 
 const modal_section = document.querySelector("#modal_section");
 
@@ -149,17 +152,8 @@ modal_section.addEventListener("click", (event) => {
   const e = event.target;
   const cards = document.querySelectorAll(".card h3");
   const name_in_modalCard = document.querySelector(".modal_card h3"); 
-  let number;
 
-    function card_index (array) {
-      for(let i = 0; i < array.length; i += 1){
-          
-        if (array[i].textContent == name_in_modalCard.textContent) {
-          number = i;
-        }
-  
-      }
-    }
+    //Closing modal
 
   if (e.className === "modal" || e.className === "close_modal") {
 
@@ -168,7 +162,9 @@ modal_section.addEventListener("click", (event) => {
     
   } else if (e.className === "right_arrow") {
 
-    card_index(cards);
+    // Next employee to display in modal card
+
+    card_index(cards, name_in_modalCard);
 
     if (number === 11) {
       number = -1;
@@ -178,8 +174,10 @@ modal_section.addEventListener("click", (event) => {
     }
 
   } else if (e.className === "left_arrow") {
+
+    // Previous employee to display in modal card
     
-    card_index(cards);
+    card_index(cards, name_in_modalCard);
 
     if (number === 0) {
       number = 12;
