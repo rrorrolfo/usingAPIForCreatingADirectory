@@ -1,6 +1,7 @@
 /********** GENERAL  *************/
 
 * {
+    box-sizing: border-box;
     font-family: 'Oxygen Mono', monospace;
 }
 
@@ -54,10 +55,12 @@ label {
     display: flex;
     background-color: #fff;
     margin-left: 10%;
-    margin-right: 10%
+    margin-right: 10%;
+    position: relative;
 }
 
-.card img {
+.card img,
+.modal_card img {
     width: 100px;
     height: 100px;
     margin: 25px 25px;
@@ -69,34 +72,75 @@ label {
     margin-bottom: 15px;
 }
 
-.card p {
+.card p,
+.modal_card p {
     margin-top: 5px;
     margin-bottom: 5px;
     color: rgb(131, 125, 125);
 }
 
+.card_overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+}
+
+.card_overlay:hover {
+    background-color: rgba(248, 248, 248, .35);
+}
+
+
+
 /********** MODAL *************/
 
-#modal {
-    width: 100%;
-    height: 100%;
+.modal {
+    width: 100vw;
+    height: 100vh;
     background-color: rgba(0, 0, 0, .75);
     position: fixed;
     top: 0;
     left: 0;
     z-index: 2;
-    display: none;
 }
 
 .modal_card {
-    width: 330px;
-    height: 400px;
+    position: absolute;
+    top: 0;
+    left: 10%;
+    width: 325px;
     margin: 15% auto;
     background-color: #fff;
     z-index: 3;
-    display: none;
+    text-align: center;
+    padding: 15px 25px;
 }
 
+.close_modal {
+    position: absolute;
+    top: 0;
+    right: 30px;
+    font-weight: 600;
+    font-size: 1.5rem;
+}
+
+.modal_card div:first-child {
+    border-bottom: 1px solid grey; 
+}
+
+.modal_card div {
+    padding: 10px;
+}
+
+.modal_card p {
+    margin: 10px 0;
+}
+
+.modal_card img {
+    margin: 10px;
+}
 
 
 /********** MOBILE RESPONSIVENESS *************/
