@@ -48,23 +48,30 @@ label {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: repeat(auto-fit, 1fr);
+    grid-gap: 25px;
 }
 
 .card {
-    margin: 20px 0;
+    margin: 0;
     display: flex;
     background-color: #fff;
-    margin-left: 10%;
-    margin-right: 10%;
     position: relative;
 }
 
 .card img,
 .modal_card img {
-    width: 100px;
-    height: 100px;
     margin: 25px 25px;
     border-radius: 50%;
+}
+
+.modal_card img {
+    width: 100px;
+    height: 100px;
+}
+
+.card img {
+    width: 75px;
+    height: 75px;
 }
 
 .card h3 {
