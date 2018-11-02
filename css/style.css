@@ -86,6 +86,10 @@ label {
     color: rgb(131, 125, 125);
 }
 
+.card p:last-child {
+    margin-bottom: 25px;
+}
+
 .card_overlay {
     position: absolute;
     top: 0;
