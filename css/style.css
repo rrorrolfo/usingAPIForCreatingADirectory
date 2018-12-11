@@ -29,7 +29,7 @@ header {
 #search_employee {
     margin: 15px 0;
     height: 35px;
-    width: 40%;
+    width: 60%;
 }
 
 label {
@@ -72,11 +72,16 @@ label {
 .card img {
     width: 75px;
     height: 75px;
+    margin: 25px 10px;
 }
 
 .card h3 {
     margin-top: 35px;
     margin-bottom: 15px;
+}
+
+.card p {
+    font-size: 13px;
 }
 
 .card p,
@@ -108,8 +113,8 @@ label {
 /********** MODAL *************/
 
 .modal {
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     background-color: rgba(0, 0, 0, .75);
     position: fixed;
     top: 0;
@@ -118,18 +123,17 @@ label {
 }
 
 .modal_card {
-    position: absolute;
-    top: 0;
+    position: fixed;
+    top: 5vh;
     left: 0;
     right: 0;
-    bottom: 0;
-    width: 325px;
+    width: 280px;
     height: 420px;
     margin: 15% auto;
     background-color: #fff;
     z-index: 3;
     text-align: center;
-    padding: 15px 25px;
+    padding: 15px 5px;
 }
 
 .left_arrow,
@@ -152,12 +156,12 @@ label {
     background-color: rgba(248, 248, 248, .35);
 }
 
-.left_arrow {
-    left: -60px;
+.modal_card .left_arrow {
+    left: -50px;
 }
 
-.right_arrow {
-    right: -60px;
+.modal_card .right_arrow {
+    right: -50px;
 }
 
 .close_modal {
@@ -203,6 +207,10 @@ label {
 
     .card {
         margin: 0;
+    }
+
+    .card p {
+        font-size: 1rem;
     }
 
     .modal_card {
